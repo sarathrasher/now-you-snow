@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 let handleInput = (oldState, action) => {
   return {
     ...oldState,
@@ -14,7 +16,11 @@ let addLocation = (oldState, action) => {
 }
 
 let deleteLocation = (oldState, action) => {
-  let newLocationList = oldState.locationList.filter(location => location !== action.location)
+  let newLocationList = oldState.locationList.filter(location => !_.isEqual(location, action.location))
+  return {
+    ...oldState,
+    locationList: newLocationList
+  }
 }
 
 let reducers = {

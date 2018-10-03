@@ -6,4 +6,4 @@ Now You Snow is an informative weather app that shows you the current weather in
 Sara Muntean
 
 ### Technologies Used
-create-react-app, React, Redux, CSS
+create-react-app, React, Redux, React Router, CSS, lodash

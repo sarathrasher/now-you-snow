@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import FetchForecast from './FetchLocation'
+import FetchForecast from './FetchForecast'
 
 class LocationForm extends React.Component {
   constructor(props) {
@@ -13,8 +13,6 @@ class LocationForm extends React.Component {
   }
   render() {
     if (this.state.submit) {
-      console.log(this.state.city)
-      console.log(this.state.state)
       return <FetchForecast state={this.state.state} city={this.state.city} />
     } else {
       return <form className='location-form'
