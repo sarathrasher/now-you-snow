@@ -3,7 +3,7 @@ import WeatherWidget from './WeatherWidget'
 
 let ForecastComponent = (props) =>
   <div className="forecast">
-    <WeatherWidget />
+    <WeatherWidget {...props}/>
   </div>
 
 export default ForecastComponent;
