@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import FetchForecast from './FetchForecast'
+import { withRouter } from 'react-router-dom';
 
 class LocationForm extends React.Component {
   constructor(props) {
@@ -12,9 +12,6 @@ class LocationForm extends React.Component {
     }
   }
   render() {
-    if (this.state.submit) {
-      return <FetchForecast state={this.state.state} city={this.state.city} />
-    } else {
       return <form className='location-form'
       onSubmit = {(event) => {
         event.preventDefault();
@@ -25,6 +22,8 @@ class LocationForm extends React.Component {
         this.setState({
           submit: true
         })
+        this.props.history.push(`/location/${this.state.state}/${this.state.city}`)
+        
       }}>
         <input 
           className='location-input' 
@@ -54,18 +53,19 @@ class LocationForm extends React.Component {
           }
           }
         />
-        <button
-          className='location-button'
-          type="submit"
-          
-          >Add Location
-        </button>
+        {/* <Link to={`/location/${this.state.state}/${this.state.city}`} > */}
+          <button
+            className='location-button'
+            type="submit"
+            
+            >Add Location
+          </button>
+        {/* </Link> */}
       </form>
       }
   }
-}
 
 
-let SmartLocationForm = connect(state => state)(LocationForm)
+let SmartLocationForm = withRouter(connect((state, props) => ({dispatch: props.dispatch, history: props.history}))(LocationForm))
 
 export default SmartLocationForm;
