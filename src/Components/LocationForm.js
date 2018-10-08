@@ -28,6 +28,7 @@ class LocationForm extends React.Component {
         <input 
           className='location-input' 
           placeholder='City'
+          required
           onChange = {(event) => {
             this.props.dispatch({
               type: 'HANDLE_LOCATION_INPUT',
@@ -42,6 +43,7 @@ class LocationForm extends React.Component {
         <input 
           className='location-input' 
           placeholder='ST'
+          required
           onChange = {(event) => {
             this.props.dispatch({
               type: 'HANDLE_LOCATION_INPUT',
