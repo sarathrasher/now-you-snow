@@ -7,3 +7,5 @@ Sara Muntean
 
 ### Technologies Used
 create-react-app, React, Redux, React Router, CSS, lodash
+
+### [Trello Board](https://trello.com/b/gAxCnLjT/now-you-snow)
