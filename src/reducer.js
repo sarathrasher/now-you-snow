@@ -7,16 +7,26 @@ let handleInput = (oldState, action) => {
   }
 }
 
-let addLocation = (oldState, action) => {
-  let newLocationList = oldState.locationList.concat([action.location])
+let addResults = (oldState, action) => {
+  let newWeatherList = oldState.weatherList.concat([action.results])
   return {
     ...oldState,
-    locationList: newLocationList
+    weatherList: newWeatherList,
+  }
+}
+
+let addLocation = (oldState, action) => {
+  let newLocationList = oldState.locationList.concat([action.location])
+  localStorage.setItem('locationList', JSON.stringify(newLocationList))
+  return {
+    ...oldState,
+    locationList: newLocationList,
   }
 }
 
 let deleteLocation = (oldState, action) => {
   let newLocationList = oldState.locationList.filter(location => !_.isEqual(location, action.location))
+  localStorage.setItem('locationList', JSON.stringify(newLocationList));
   return {
     ...oldState,
     locationList: newLocationList
@@ -27,6 +37,7 @@ let reducers = {
   'HANDLE_LOCATION_INPUT': handleInput,
   'ADD_LOCATION': addLocation,
   'DELETE_LOCATION': deleteLocation,
+  'ADD_RESULTS': addResults,
 }
 
 let reducer = (oldState, action) => {

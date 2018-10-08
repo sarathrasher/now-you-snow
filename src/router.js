@@ -6,12 +6,10 @@ import FetchForecast from './Components/FetchForecast';
 
 let Router = () =>
   <HashRouter>
-    <div>
-      <Switch>
-        <Route exact path='/' component={HomeScreen} />
-        <Route path='/location/:city' component={FetchForecast}></Route>
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path='/' component={HomeScreen} />
+      <Route path='/location/:state/:city' component={FetchForecast}></Route>
+    </Switch>
   </HashRouter>
 
   export default Router;

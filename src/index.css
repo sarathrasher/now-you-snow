@@ -6,4 +6,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 15px;
+}
+
+.shown-date {
+  font-weight: bold;
+  padding: 1em;
+}
+
+.date {
+  padding: 1em;
+}
+
+.forecast {
+  display: flex;
+}
+
+.expanded-details {
+  padding: 1em;
 }
