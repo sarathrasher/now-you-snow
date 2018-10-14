@@ -23,28 +23,28 @@ class ForecastComponent extends React.Component {
         <div className="forecast">    
           <PresentWidget 
             shown={this.state.selectedIndex === 0} 
-            day={this.props.weatherResults.query.results.channel} 
+            day={this.props.weatherResults} 
             key={Math.random()}
             handleClick={this.updateSelectedIndex}
             index={0}
             />
           <WeatherWidget 
             shown={this.state.selectedIndex === 1} 
-            day={this.props.weatherResults.query.results.channel.item.forecast[1]} 
+            day={this.props.weatherResults.item.forecast[1]} 
             key={Math.random()}
             handleClick={this.updateSelectedIndex}
             index={1}
             />
           <WeatherWidget 
             shown={this.state.selectedIndex === 2} 
-            day={this.props.weatherResults.query.results.channel.item.forecast[2]} 
+            day={this.props.weatherResults.item.forecast[2]} 
             key={Math.random()}
             handleClick={this.updateSelectedIndex}
             index={2}
             />
           <WeatherWidget 
             shown={this.state.selectedIndex === 3} 
-            day={this.props.weatherResults.query.results.channel.item.forecast[3]} 
+            day={this.props.weatherResults.item.forecast[3]} 
             key={Math.random()}
             handleClick={this.updateSelectedIndex}
             index={3}

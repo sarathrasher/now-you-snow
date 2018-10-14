@@ -16,13 +16,12 @@ class FetchForecast extends React.Component {
         return res.text()}) 
       .then(results => {
         let resultsObject = JSON.parse(results)
-        console.log(resultsObject)
         let city = resultsObject.query.results.channel.location.city;
         let state = resultsObject.query.results.channel.location.region;
         let country = resultsObject.query.results.channel.location.country
         this.props.dispatch({
           type: 'ADD_RESULTS',
-          weatherResults: resultsObject,
+          weatherResults: resultsObject.query.results.channel,
           zipCode: zipCode,
           city: city,
           state: state,
