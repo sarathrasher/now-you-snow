@@ -1,5 +1,6 @@
 import React from 'react';
 import LocationScreen from './LocationScreen';
+import { connect } from 'react-redux';
 
 class FetchForecast extends React.Component {
   constructor(props) {
@@ -15,27 +16,39 @@ class FetchForecast extends React.Component {
         return res.text()}) 
       .then(results => {
         let resultsObject = JSON.parse(results)
-        this.setState(() => ({
-          weatherResults: resultsObject
-        }))
+        console.log(resultsObject)
+        let city = resultsObject.query.results.channel.location.city;
+        let state = resultsObject.query.results.channel.location.region;
+        let country = resultsObject.query.results.channel.location.country
+        this.props.dispatch({
+          type: 'ADD_RESULTS',
+          weatherResults: resultsObject,
+          zipCode: zipCode,
+          city: city,
+          state: state,
+          country: country
+        })
     }
   )}
   componentDidMount() {
     this.fetchData()  
   }
-  componentWillReceiveProps() {
-    this.fetchData()
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.zipCode !== prevProps.match.params.zipCode) {
+      this.fetchData()
+    }
   }
+
   render() {
-    let city = this.props.match.params.city;
-    let state = this.props.match.params.state;
-    if (Object.keys(this.state.weatherResults).length > 0) {
-      return <LocationScreen weatherResults={this.state.weatherResults} weatherLocation={[city, state]}/>
+    let zipCode = this.props.match.params.zipCode
+    if (Object.keys(this.props.weatherResults).length > 0) {
+      return <LocationScreen weatherResults={this.props.weatherResults} weatherLocation={zipCode}/>
     } else {
-      return <p className='loading-message'>Loading Weather Data</p>
+      return <p className='loading-message'>Loading Weather Data...</p>
     }
 
   }
 }
 
-export default FetchForecast;
+export default connect(state => ({weatherResults: state.weatherResults, dispatch: state.dispatch}))(FetchForecast);

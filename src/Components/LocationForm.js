@@ -14,10 +14,10 @@ class LocationForm extends React.Component {
       return <form className='location-form'
       onSubmit = {(event) => {
         event.preventDefault();
-        this.props.dispatch({
-          type: 'ADD_LOCATION',
-          location: [this.state.zipCode]
-        });
+        // this.props.dispatch({
+        //   type: 'ADD_LOCATION',
+        //   location: [this.state.zipCode]
+        // });
         this.setState({
           submit: true
         })

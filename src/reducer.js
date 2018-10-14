@@ -8,10 +8,33 @@ let handleInput = (oldState, action) => {
 }
 
 let addResults = (oldState, action) => {
-  let newWeatherList = oldState.weatherList.concat([action.results])
+  let existingZipCodes = []
+  let newLocationList;
+
+  oldState.locationList.map(location =>
+    existingZipCodes.push(location.zipCode)
+  );
+
+  if (!existingZipCodes.includes(action.zipCode)) {
+    newLocationList = oldState.locationList.concat(
+      {
+        zipCode: action.zipCode, 
+        city: action.city, 
+        state: action.state, 
+        country: action.country
+      })
+  } else {
+    newLocationList = oldState.locationList
+  }
+
+  localStorage.setItem('locationList', JSON.stringify(newLocationList))
+  console.log(newLocationList)
+  console.log(action.weatherResults)
+
   return {
     ...oldState,
-    weatherList: newWeatherList,
+    weatherResults: action.weatherResults,
+    locationList: newLocationList
   }
 }
 
@@ -25,7 +48,9 @@ let addLocation = (oldState, action) => {
 }
 
 let deleteLocation = (oldState, action) => {
-  let newLocationList = oldState.locationList.filter(location => !_.isEqual(location, action.location))
+
+  let newLocationList = oldState.locationList.filter(location => location.zipCode !== action.location)
+
   localStorage.setItem('locationList', JSON.stringify(newLocationList));
   return {
     ...oldState,
