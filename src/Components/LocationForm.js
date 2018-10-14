@@ -7,46 +7,39 @@ class LocationForm extends React.Component {
     super(props);
     this.state = {
       zipCode: '',
-      submit: false
     }
   }
   render() {
-      return <form className='location-form'
-      onSubmit = {(event) => {
-        event.preventDefault();
-        // this.props.dispatch({
-        //   type: 'ADD_LOCATION',
-        //   location: [this.state.zipCode]
-        // });
-        this.setState({
-          submit: true
-        })
-        this.props.history.push(`/location/${this.state.zipCode}`)
-        
-      }}>
-        <input 
-          className='location-input' 
-          placeholder='Zipcode'
-          required
-          onChange = {(event) => {
-            this.props.dispatch({
-              type: 'HANDLE_LOCATION_INPUT',
-              locationFormInput: event.target.value,
-            })
-            this.setState({
-              zipCode: event.target.value
-            })
-          }
-          }
-        />
+      return (
+        <form className='location-form'
+        onSubmit = {(event) => {
+          event.preventDefault();
+          this.props.history.push(`/location/${this.state.zipCode}`) 
+        }}>
+          <input 
+            className='location-input' 
+            placeholder='Zipcode'
+            required
+            onChange = {(event) => {
+              this.props.dispatch({
+                type: 'HANDLE_LOCATION_INPUT',
+                locationFormInput: event.target.value,
+              })
+              this.setState({
+                zipCode: event.target.value
+              })
+            }
+            }
+          />
           <button
             className='location-button'
             type="submit"
             
             >Add Location
           </button>
-      </form>
-      }
+        </form>
+      )
+    }
   }
 
 

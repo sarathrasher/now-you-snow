@@ -1,17 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
-import _ from 'lodash'
 
 class LocationListBar extends React.Component {
   constructor(props) {
     super(props)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!_.isEqual(this.props.locationList, prevProps.locationList)) {
-
-    }
   }
 
   render() {
