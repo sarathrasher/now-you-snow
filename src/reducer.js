@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 let handleInput = (oldState, action) => {
   return {
     ...oldState,
@@ -28,8 +26,6 @@ let addResults = (oldState, action) => {
   }
 
   localStorage.setItem('locationList', JSON.stringify(newLocationList))
-  console.log(newLocationList)
-  console.log(action.weatherResults)
 
   return {
     ...oldState,
