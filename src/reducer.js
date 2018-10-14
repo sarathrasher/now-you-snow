@@ -38,15 +38,6 @@ let addResults = (oldState, action) => {
   }
 }
 
-let addLocation = (oldState, action) => {
-  let newLocationList = oldState.locationList.concat([action.location])
-  localStorage.setItem('locationList', JSON.stringify(newLocationList))
-  return {
-    ...oldState,
-    locationList: newLocationList,
-  }
-}
-
 let deleteLocation = (oldState, action) => {
 
   let newLocationList = oldState.locationList.filter(location => location.zipCode !== action.location)
@@ -60,7 +51,6 @@ let deleteLocation = (oldState, action) => {
 
 let reducers = {
   'HANDLE_LOCATION_INPUT': handleInput,
-  'ADD_LOCATION': addLocation,
   'DELETE_LOCATION': deleteLocation,
   'ADD_RESULTS': addResults,
 }
