@@ -9,9 +9,8 @@ class FetchForecast extends React.Component {
     }
   }
   fetchData = () => {
-    let city = this.props.match.params.city;
-    let state = this.props.match.params.state;
-    fetch(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${city}%2C%20${state}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`) 
+    let zipCode = this.props.match.params.zipCode;
+    fetch(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=${zipCode})&format=json`) 
       .then(res => {
         return res.text()}) 
       .then(results => {
