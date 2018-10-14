@@ -1,16 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
+import _ from 'lodash'
 
-let LocationListBar = (props) =>
-  <div className='location-list'>
-    {/* {props.locationList.map(location =>
-      <NavLink 
-      activeStyle={{fontWeight: 'bold'}}
-      key={location[0]} 
-      to={`/location/${location[1].toLowerCase()}/${location[0].toLowerCase()}`}> {location[0]}, {location[1]}</NavLink> )} */}
-  </div>
+class LocationListBar extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
-let SmartLocationListBar = withRouter(connect(state => ({locationList: state.locationList}))(LocationListBar))
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(this.props.locationList, prevProps.locationList)) {
 
-export default SmartLocationListBar
+    }
+  }
+
+  render() {
+    return (
+      <div className='location-list'>
+        {this.props.locationList.map(location =>
+          <NavLink 
+          activeStyle={{fontWeight: 'bold'}}
+          key={location.zipCode} 
+          to={`/location/${location.zipCode}`}> 
+          {location.city}, {location.state}
+          </NavLink> )}
+        </div>
+    )
+  }
+}
+
+
+export default withRouter(connect(state => ({locationList: state.locationList}))(LocationListBar))
