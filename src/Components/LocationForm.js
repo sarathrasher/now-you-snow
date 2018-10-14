@@ -6,8 +6,7 @@ class LocationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: '',
-      state: '',
+      zipCode: '',
       submit: false
     }
   }
@@ -17,17 +16,17 @@ class LocationForm extends React.Component {
         event.preventDefault();
         this.props.dispatch({
           type: 'ADD_LOCATION',
-          location: [this.state.city, this.state.state]
+          location: [this.state.zipCode]
         });
         this.setState({
           submit: true
         })
-        this.props.history.push(`/location/${this.state.state}/${this.state.city}`)
+        this.props.history.push(`/location/${this.state.zipCode}`)
         
       }}>
         <input 
           className='location-input' 
-          placeholder='City'
+          placeholder='Zipcode'
           required
           onChange = {(event) => {
             this.props.dispatch({
@@ -35,34 +34,17 @@ class LocationForm extends React.Component {
               locationFormInput: event.target.value,
             })
             this.setState({
-              city: event.target.value
+              zipCode: event.target.value
             })
           }
           }
         />
-        <input 
-          className='location-input' 
-          placeholder='ST'
-          required
-          onChange = {(event) => {
-            this.props.dispatch({
-              type: 'HANDLE_LOCATION_INPUT',
-              locationFormInput: event.target.value,
-            })
-            this.setState({
-              state: event.target.value
-            })
-          }
-          }
-        />
-        {/* <Link to={`/location/${this.state.state}/${this.state.city}`} > */}
           <button
             className='location-button'
             type="submit"
             
             >Add Location
           </button>
-        {/* </Link> */}
       </form>
       }
   }
