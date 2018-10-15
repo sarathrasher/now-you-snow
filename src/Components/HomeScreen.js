@@ -3,7 +3,7 @@ import Header from './Header';
 import LocationForm from './LocationForm';
 import SmartLocationListBar from './LocationListBar';
 
-let HomeScreen = (props) =>
+let HomeScreen = () =>
   <div className="main">
     <Header />
     <SmartLocationListBar />
