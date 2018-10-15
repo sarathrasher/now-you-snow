@@ -7,7 +7,7 @@ class FetchForecast extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      weatherResults: {}
+      weatherResults: {},
     }
   }
   fetchData = () => {
@@ -18,8 +18,8 @@ class FetchForecast extends React.Component {
       .then(results => {
         let resultsObject = JSON.parse(results)
         console.log(resultsObject)
-        if (resultsObject.query.count === 0 || !resultsObject.query.results) {
-          this.props.history.push('/error')
+        if (resultsObject.query.count === 0 || resultsObject.query.results === null) {
+          this.props.history.push(`/error/${location}`)
         } else {
           let city = resultsObject.query.results.channel.location.city;
           let state = resultsObject.query.results.channel.location.region;
@@ -49,7 +49,7 @@ class FetchForecast extends React.Component {
   }
 
   render() {
-    if (this.props.weatherResults.item) {
+    if (this.props.weatherResults.item && !this.state.error) {
       return <LocationScreen weatherResults={this.props.weatherResults} />
     } else {
       return <LoadingScreen />
