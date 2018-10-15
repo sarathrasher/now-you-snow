@@ -35,8 +35,8 @@ let addResults = (oldState, action) => {
 }
 
 let deleteLocation = (oldState, action) => {
-
-  let newLocationList = oldState.locationList.filter(location => location.zipCode !== action.location)
+  console.log(action.location)
+  let newLocationList = oldState.locationList.filter(location => location.location !== action.location)
 
   localStorage.setItem('locationList', JSON.stringify(newLocationList));
   return {

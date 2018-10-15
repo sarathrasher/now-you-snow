@@ -1,7 +1,6 @@
 import React from 'react';
 import LocationScreen from './LocationScreen';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
 import ErrorScreen from './ErrorScreen';
 
 class FetchForecast extends React.Component {
@@ -57,4 +56,4 @@ class FetchForecast extends React.Component {
   }
 }
 
-export default withRouter(connect(state => ({weatherResults: state.weatherResults, dispatch: state.dispatch}))(FetchForecast));
+export default connect(state => ({weatherResults: state.weatherResults, dispatch: state.dispatch}))(FetchForecast);
