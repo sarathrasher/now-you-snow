@@ -6,6 +6,7 @@ let handleInput = (oldState, action) => {
 }
 
 let addResults = (oldState, action) => {
+  console.log(action.weatherResults)
   let existingZipCodes = []
   let newLocationList;
 
