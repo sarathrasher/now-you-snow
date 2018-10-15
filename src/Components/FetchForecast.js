@@ -2,6 +2,7 @@ import React from 'react';
 import LocationScreen from './LocationScreen';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
+import ErrorScreen from './ErrorScreen';
 
 class FetchForecast extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class FetchForecast extends React.Component {
     if (this.props.weatherResults.item) {
       return <LocationScreen {...this.props} />
     } else {
-      return <p className='error-message'>I'm sorry, there was an error getting this locations weather data</p>
+      return <ErrorScreen />
     }
   }
 }
