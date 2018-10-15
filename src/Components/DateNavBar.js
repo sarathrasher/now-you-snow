@@ -9,7 +9,7 @@ let DateNavBar = (props) => {
       <NavLink 
       activeStyle={{fontWeight: 'bold'}}
       key={date.date} 
-      to={`/location/${props.zipCode}/${date.date}`}> 
+      to={`/location/${props.location}/${date.date}`}> 
       {date.day} {date.date}
       </NavLink> )}
     </div>

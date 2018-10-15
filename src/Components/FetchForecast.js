@@ -12,8 +12,8 @@ class FetchForecast extends React.Component {
     }
   }
   fetchData = () => {
-    let zipCode = this.props.match.params.zipCode;
-    fetch(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=${zipCode})&format=json`) 
+    let location = this.props.match.params.location;
+    fetch(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${location}")&format=json`) 
       .then(res => {
         return res.text()}) 
       .then(results => {
@@ -21,13 +21,14 @@ class FetchForecast extends React.Component {
         if (resultsObject.query.count === 0) {
           return
         } else {
+          console.log(resultsObject)
           let city = resultsObject.query.results.channel.location.city;
           let state = resultsObject.query.results.channel.location.region;
           let country = resultsObject.query.results.channel.location.country
           this.props.dispatch({
             type: 'ADD_RESULTS',
             weatherResults: resultsObject.query.results.channel,
-            zipCode: zipCode,
+            location: location,
             city: city,
             state: state,
             country: country
@@ -37,25 +38,23 @@ class FetchForecast extends React.Component {
     }
   )}
   componentDidMount() {
-    if (Object.keys(this.props.weatherResults).length === 0) {
-      console.log(this.props.weatherResults)
+    if (!this.props.weatherResults.item) {
       this.fetchData()  
     }
-
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.zipCode !== prevProps.match.params.zipCode) {
+    if (this.props.match.params.location !== prevProps.match.params.location) {
       this.fetchData()
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    let zipCode = this.props.match.params.zipCode;
-    if (!this.props.match.params.date) {
-      this.props.history.push(`/location/${zipCode}/${nextProps.weatherResults.item.forecast[0].date}`)
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   let location = this.props.match.params.location;
+  //   if (!this.props.match.params.date) {
+  //     this.props.history.push(`/location/${location}/${nextProps.weatherResults.item.forecast[0].date}`)
+  //   }
+  // }
 
   render() {
     if (this.props.weatherResults.item) {

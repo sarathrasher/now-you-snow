@@ -7,8 +7,8 @@ let LocationListBar = (props) =>
     {props.locationList.map(location =>
       <NavLink 
       activeStyle={{fontWeight: 'bold'}}
-      key={location.zipCode} 
-      to={`/location/${location.zipCode}`}> 
+      key={location.location} 
+      to={`/location/${location.location}`}> 
       {location.city}, {location.state}
       </NavLink> )}
     </div>
