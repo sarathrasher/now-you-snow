@@ -21,7 +21,6 @@ class FetchForecast extends React.Component {
         if (resultsObject.query.count === 0) {
           return
         } else {
-          console.log(resultsObject)
           let city = resultsObject.query.results.channel.location.city;
           let state = resultsObject.query.results.channel.location.region;
           let country = resultsObject.query.results.channel.location.country
@@ -48,7 +47,7 @@ class FetchForecast extends React.Component {
       this.fetchData()
     }
   }
-  
+
   render() {
     if (this.props.weatherResults.item) {
       return <LocationScreen weatherResults={this.props.weatherResults} />

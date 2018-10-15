@@ -6,7 +6,6 @@ let handleInput = (oldState, action) => {
 }
 
 let addResults = (oldState, action) => {
-  console.log(action.weatherResults)
   let existingLocations = []
   let newLocationList;
 
