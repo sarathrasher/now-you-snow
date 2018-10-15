@@ -3,14 +3,14 @@ import Header from './Header';
 import LocationForm from './LocationForm';
 import SmartLocationListBar from './LocationListBar';
 
-let ErrorScreen = () =>
+let LoadingScreen = () =>
   <div className="main">
     <Header />
     <div className='content'>
       <LocationForm />
       <SmartLocationListBar />
-      <p className='error-message'>I'm sorry, there was an error getting this locations weather data</p> 
+      <p className='error-message'>Loading weather data...</p> 
     </div>
   </div>
 
-export default ErrorScreen;
+export default LoadingScreen;

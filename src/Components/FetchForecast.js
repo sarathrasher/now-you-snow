@@ -2,6 +2,7 @@ import React from 'react';
 import LocationScreen from './LocationScreen';
 import { connect } from 'react-redux';
 import ErrorScreen from './ErrorScreen';
+import LoadingScreen from './LoadingScreen';
 
 class FetchForecast extends React.Component {
   constructor(props) {
@@ -17,8 +18,9 @@ class FetchForecast extends React.Component {
         return res.text()}) 
       .then(results => {
         let resultsObject = JSON.parse(results)
-        if (resultsObject.query.count === 0) {
-          return
+        console.log(resultsObject)
+        if (resultsObject.query.count === 0 || !resultsObject.query.results) {
+          this.props.history.push('/error')
         } else {
           let city = resultsObject.query.results.channel.location.city;
           let state = resultsObject.query.results.channel.location.region;
@@ -51,9 +53,9 @@ class FetchForecast extends React.Component {
     if (this.props.weatherResults.item) {
       return <LocationScreen weatherResults={this.props.weatherResults} />
     } else {
-      return <ErrorScreen />
+      return <LoadingScreen />
     }
   }
 }
 
-export default connect(state => ({weatherResults: state.weatherResults, dispatch: state.dispatch}))(FetchForecast);
+export default connect((state, props) => ({history: props.history, weatherResults: state.weatherResults, dispatch: props.dispatch}))(FetchForecast);
