@@ -15,7 +15,7 @@ let ErrorScreen = () =>
         Home
       </NavLink>
       <SmartLocationListBar />
-      <p className='error-message'>I'm sorry, there was an error getting this locations weather data</p> 
+      <p className='error-message'>I'm sorry, there was an error getting this location's weather data</p> 
     </div>
   </div>
 
