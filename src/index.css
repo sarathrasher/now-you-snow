@@ -17,6 +17,15 @@
   justify-content: center;
 }
 
+.header-text {
+  background-color: #b7f7f4;
+  width: 100vw;
+  text-align: center;
+  padding: 0.5em;
+  margin: 0;
+  border: 1px solid #93c6c4;
+}
+
 .shown-date {
   font-weight: bold;
   padding: 1em;
@@ -34,13 +43,14 @@
   padding: 1em;
 }
 
-.bold {
+.active {
   font-weight: bold;
+  text-decoration: underline;
 }
 
-.nav-link {
+.date-link {
   cursor: pointer;
-  margin: 2em
+  margin: 1em 3em 1em 3em;
 }
 
 .date-nav-bar {
@@ -51,6 +61,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0.5em;
 }
 
 .location-link {
@@ -58,12 +69,33 @@
   margin: 1em 2em 0 2em;
 }
 
+.location-form {
+  padding: 0.5em;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 80vw;
+  background-color: rgba(183, 247, 244, 0.25);
+  border: 1px solid #93c6c4;
+}
+
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100vw;
+  background-color: white;
+  height: 100vh;
 }
 
 .future-component {
