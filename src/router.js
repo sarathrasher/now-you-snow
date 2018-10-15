@@ -2,8 +2,6 @@ import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import HomeScreen from './Components/HomeScreen'
 import FetchForecast from './Components/FetchForecast';
-import ForecastScreen from './Components/ForecastScreen'
-import LocationScreen from './Components/LocationScreen'
 
 let Router = () =>
   <HashRouter>

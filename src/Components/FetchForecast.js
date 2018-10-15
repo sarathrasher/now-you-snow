@@ -18,7 +18,6 @@ class FetchForecast extends React.Component {
         return res.text()}) 
       .then(results => {
         let resultsObject = JSON.parse(results)
-        console.log(resultsObject)
         if (resultsObject.query.count === 0) {
           return
         } else {

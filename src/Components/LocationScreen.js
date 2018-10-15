@@ -1,5 +1,4 @@
 import React from 'react';
-import ForecastComponent from './ForecastScreen';
 import Header from './Header';
 import SmartLocationForm from './LocationForm';
 import SmartLocationListBar from './LocationListBar';

@@ -1,9 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 let DateNavBar = (props) => {
-  let weatherForecast = props.weatherResults.item.forecast.slice(0, 3)
+  let weatherForecast = props.weatherResults.item.forecast.slice(0, 4)
   return (
     <div className='location-list'>
     {weatherForecast.map(date =>
@@ -19,4 +18,3 @@ let DateNavBar = (props) => {
 
 export default DateNavBar;
 
-// export default withRouter(connect(state => ({weatherResults: state.weatherResults}))(DateNavBar))
