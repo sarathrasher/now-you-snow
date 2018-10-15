@@ -19,7 +19,7 @@ class FetchForecast extends React.Component {
         let resultsObject = JSON.parse(results)
         console.log(resultsObject)
         if (resultsObject.query.count === 0 || resultsObject.query.results === null) {
-          this.props.history.push(`/error/${location}`)
+          this.props.history.push('/error')
         } else {
           let city = resultsObject.query.results.channel.location.city;
           let state = resultsObject.query.results.channel.location.region;
