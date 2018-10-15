@@ -6,17 +6,17 @@ let handleInput = (oldState, action) => {
 }
 
 let addResults = (oldState, action) => {
-  let existingZipCodes = []
+  let existingLocations = []
   let newLocationList;
 
   oldState.locationList.map(location =>
-    existingZipCodes.push(location.zipCode)
+    existingLocations.push(location.location)
   );
 
-  if (!existingZipCodes.includes(action.zipCode)) {
+  if (!existingLocations.includes(action.location)) {
     newLocationList = oldState.locationList.concat(
       {
-        zipCode: action.zipCode, 
+        location: action.location, 
         city: action.city, 
         state: action.state, 
         country: action.country

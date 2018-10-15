@@ -1,6 +1,8 @@
 import React from 'react';
 import LocationScreen from './LocationScreen';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
+import ErrorScreen from './ErrorScreen';
 
 class FetchForecast extends React.Component {
   constructor(props) {
@@ -10,44 +12,49 @@ class FetchForecast extends React.Component {
     }
   }
   fetchData = () => {
-    let zipCode = this.props.match.params.zipCode;
-    fetch(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=${zipCode})&format=json`) 
+    let location = this.props.match.params.location;
+    fetch(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${location}")&format=json`) 
       .then(res => {
         return res.text()}) 
       .then(results => {
         let resultsObject = JSON.parse(results)
-        let city = resultsObject.query.results.channel.location.city;
-        let state = resultsObject.query.results.channel.location.region;
-        let country = resultsObject.query.results.channel.location.country
-        this.props.dispatch({
-          type: 'ADD_RESULTS',
-          weatherResults: resultsObject.query.results.channel,
-          zipCode: zipCode,
-          city: city,
-          state: state,
-          country: country
-        })
+        if (resultsObject.query.count === 0) {
+          return
+        } else {
+          let city = resultsObject.query.results.channel.location.city;
+          let state = resultsObject.query.results.channel.location.region;
+          let country = resultsObject.query.results.channel.location.country
+          this.props.dispatch({
+            type: 'ADD_RESULTS',
+            weatherResults: resultsObject.query.results.channel,
+            location: location,
+            city: city,
+            state: state,
+            country: country
+          })
+        }
+
     }
   )}
   componentDidMount() {
-    this.fetchData()  
+    if (!this.props.weatherResults.item) {
+      this.fetchData()  
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.zipCode !== prevProps.match.params.zipCode) {
+    if (this.props.match.params.location !== prevProps.match.params.location) {
       this.fetchData()
     }
   }
 
   render() {
-    let zipCode = this.props.match.params.zipCode
-    if (Object.keys(this.props.weatherResults).length > 0) {
-      return <LocationScreen weatherResults={this.props.weatherResults} weatherLocation={zipCode}/>
+    if (this.props.weatherResults.item) {
+      return <LocationScreen weatherResults={this.props.weatherResults} />
     } else {
-      return <p className='loading-message'>Loading Weather Data...</p>
+      return <ErrorScreen />
     }
-
   }
 }
 
-export default connect(state => ({weatherResults: state.weatherResults, dispatch: state.dispatch}))(FetchForecast);
+export default withRouter(connect(state => ({weatherResults: state.weatherResults, dispatch: state.dispatch}))(FetchForecast));

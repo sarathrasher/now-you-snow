@@ -7,7 +7,7 @@ let Router = () =>
   <HashRouter>
     <Switch>
       <Route exact path='/' component={HomeScreen} />
-      <Route path='/location/:zipCode' component={FetchForecast}></Route>
+      <Route path='/location/:location' component={FetchForecast}></Route>
     </Switch>
   </HashRouter>
 

@@ -6,7 +6,7 @@ class LocationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zipCode: '',
+      location: '',
     }
   }
   render() {
@@ -14,19 +14,18 @@ class LocationForm extends React.Component {
         <form className='location-form'
         onSubmit = {(event) => {
           event.preventDefault();
-          this.props.history.push(`/location/${this.state.zipCode}`) 
+          this.props.history.push(`/location/${this.state.location}`)
+          this.setState({
+            location: ''
+          }) 
         }}>
           <input 
             className='location-input' 
-            placeholder='Zipcode'
+            placeholder='Zipcode or City'
             required
             onChange = {(event) => {
-              this.props.dispatch({
-                type: 'HANDLE_LOCATION_INPUT',
-                locationFormInput: event.target.value,
-              })
               this.setState({
-                zipCode: event.target.value
+                location: event.target.value
               })
             }
             }

@@ -2,7 +2,6 @@ import { createStore } from 'redux';
 import reducer from './reducer'
 
  let initialState = {
-  locationFormInput: '',
   locationList: (localStorage.getItem('locationList') ? JSON.parse(localStorage.getItem('locationList')) : []),
   weatherResults: {},
 };
