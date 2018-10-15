@@ -1,7 +1,6 @@
 import React from 'react';
 import LocationScreen from './LocationScreen';
 import { connect } from 'react-redux';
-import ErrorScreen from './ErrorScreen';
 import LoadingScreen from './LoadingScreen';
 
 class FetchForecast extends React.Component {
