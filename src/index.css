@@ -9,6 +9,14 @@
   font-size: 15px;
 }
 
+.header {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .shown-date {
   font-weight: bold;
   padding: 1em;
@@ -24,4 +32,45 @@
 
 .expanded-details {
   padding: 1em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.nav-link {
+  cursor: pointer;
+  margin: 2em
+}
+
+.date-nav-bar {
+  display: flex;
+}
+
+.location-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.location-link {
+  padding: 0.5em, 2em, 0.5em, 2em;
+  margin: 1em 2em 0 2em;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.future-component {
+  display: flex;
+}
+
+.date {
+  padding: 0;
+  margin: 0;
 }

@@ -6,10 +6,11 @@ let LocationListBar = (props) =>
   <div className='location-list'>
     {props.locationList.map(location =>
       <NavLink 
-      activeStyle={{fontWeight: 'bold'}}
-      key={location.location} 
-      to={`/location/${location.location}`}> 
-      {location.city}, {location.state}
+        className='location-link'
+        activeStyle={{fontWeight: 'bold'}}
+        key={location.location} 
+        to={`/location/${location.location}`}> 
+        {location.city}, {location.state}
       </NavLink> )}
     </div>
 
