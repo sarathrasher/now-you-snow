@@ -48,17 +48,10 @@ class FetchForecast extends React.Component {
       this.fetchData()
     }
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   let location = this.props.match.params.location;
-  //   if (!this.props.match.params.date) {
-  //     this.props.history.push(`/location/${location}/${nextProps.weatherResults.item.forecast[0].date}`)
-  //   }
-  // }
-
+  
   render() {
     if (this.props.weatherResults.item) {
-      return <LocationScreen {...this.props} />
+      return <LocationScreen weatherResults={this.props.weatherResults} />
     } else {
       return <ErrorScreen />
     }

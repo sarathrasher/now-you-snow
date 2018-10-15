@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 let WeatherWidget = (props) =>
   <div 
@@ -8,14 +7,12 @@ let WeatherWidget = (props) =>
       props.handleClick(props.index)
     }
     >
-      <p className={props.shown ? 'shown-date' : 'date'}>{props.day.date}</p>
-      { props.shown ? 
-          <div className='expanded-details'>
-            <p className='high'>High: {props.day.high}</p>
-            <p className='high'>Low: {props.day.low}</p>
-            <p className='description'>{props.day.text}</p>
-          </div>
-        : null }
+      <p className='date'>{props.day.date}</p>
+        <div className='expanded-details'>
+          <p className='high'>High: {props.day.high}</p>
+          <p className='high'>Low: {props.day.low}</p>
+          <p className='description'>{props.day.text}</p>
+        </div>
   </div>
 
-export default connect(props => ({dispatch: props.dispatch}))(WeatherWidget);
+export default WeatherWidget
